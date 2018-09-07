@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+       Copyright ${license.git.copyrightYears} the original author or authors.
+
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+-->
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+    <!--<properties resource="generator/mybatisGeneratorinit.properties"/>-->
+    <!--<properties url="file:///F:/java_workspace/mybatisTest/src/main/resources/generator/mybatisGeneratorinit.properties"/>-->
+
+    <!-- mysql的jar文件路径 -->
+    <!--此处建议吧 jar包放在classpath目录下面, 避免环境不统一 -->
+    <classPathEntry
+            location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\5.1.45\mysql-connector-java-5.1.45.jar" />
+
+    <context id="Mysql" targetRuntime="MyBatis3">
+        <property name="autoDelimitKeywords" value="true" />
+        <property name="beginningDelimiter" value="`" />
+        <property name="endingDelimiter" value="`" />
+        <property name="javaFileEncoding" value="utf-8" />
+
+        <!--<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />-->
+        <!--<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />-->
+        <!-- 在model中生成toString -->
+        <!--<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />-->
+
+
+        <!-- 是否 去除 自动生成的注释 true：是 ： false:否 -->
+        <!--<commentGenerator  type="com.demo.demo.CommentGeneratorConfigure">-->
+        <commentGenerator>
+            <!--<property name="suppressAllComments" value="false" />-->
+            <!-- 时间 -->
+            <property name="suppressDate" value="true" />
+        </commentGenerator>
+
+
+        <!-- 数据库相关配置 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.168.14.147:3306/mybatis?characterEncoding=UTF-8" userId="root"
+                        password="root" />
+
+        <!-- 类型转换 -->
+        <javaTypeResolver
+                type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
+            <!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- 配置model目录 -->
+        <javaModelGenerator targetPackage="org.demo.domain"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- 配置xml映射目录 -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!-- 配置mapper目录 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="org.demo.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+
+        <!-- tableName是数据库中的表名，domainObjectName是生成的JAVA模型名，后面的参数不用改，要生成更多的表就在下面继续加table标签 -->
+        <table tableName="umfestival_record_info" domainObjectName="RecordInfoDo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!-- 保持数据库字段与实体类字段一致, 不一致就是驼峰命名 -->
+            <property name="useActualColumnNames" value="false" />
+        </table>
+
+    </context>
+</generatorConfiguration>
+<!--mvn mybatis-generator:generate-->
