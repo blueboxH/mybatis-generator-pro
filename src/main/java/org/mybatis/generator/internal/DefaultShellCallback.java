@@ -1,5 +1,5 @@
 /**
- *    Copyright ${license.git.copyrightYears} the original author or authors.
+ *    Copyright 2006-2018 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -258,7 +258,6 @@ public class DefaultShellCallback implements ShellCallback {
             members.removeIf(member -> ((BodyDeclaration) member).getComment().toString().contains(oldTag));
         }
 
-        System.out.println(members.toString());
         // 添加所有没有特殊标记的成员到 新文件
         newType.getMembers().addAll(members);
 
