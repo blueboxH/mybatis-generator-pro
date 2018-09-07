@@ -432,14 +432,17 @@ public class DefaultCommentGenerator implements CommentGenerator {
     public void addFieldAnnotation(Field field, IntrospectedTable introspectedTable,
                                    IntrospectedColumn introspectedColumn, Set<FullyQualifiedJavaType> imports) {
 //        imports.add(new FullyQualifiedJavaType("javax.annotation.Generated")); //$NON-NLS-1$
-        imports.add(new FullyQualifiedJavaType("io.swagger.annotations.ApiModelProperty")); //$NON-NLS-1$
+        //$NON-NLS-1$
 //        String comment = "Source field: " //$NON-NLS-1$
 //                + introspectedTable.getFullyQualifiedTable().toString()
 //                + "." //$NON-NLS-1$
 //                + introspectedColumn.getActualColumnName();
 //        field.addAnnotation(getGeneratedAnnotation(comment));
-        field.addAnnotation("@ApiModelProperty(\"" + introspectedColumn.getRemarks() + "\")");
-
+        String remarks = introspectedColumn.getRemarks();
+        if (remarks != null && !remarks.isEmpty()){
+            imports.add(new FullyQualifiedJavaType("io.swagger.annotations.ApiModelProperty"));
+            field.addAnnotation("@ApiModelProperty(\"" + remarks + "\")");
+        }
     }
 
     @Override
