@@ -1,4 +1,7 @@
+!/target/mybatis-generator-core-1.3.7.jar
+!/target/mybatis-generator-core-1.3.7-jar-with-dependencies.jar
 /target/
+
 !.mvn/wrapper/maven-wrapper.jar
 
 ### IntelliJ IDEA ###
@@ -7,5 +10,6 @@
 *.iml
 
 .gitignore
+
 
 
