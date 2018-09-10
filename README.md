@@ -7,6 +7,12 @@
 - 由于项目默认不会合并java代码, 这里我根据注释中的`@mbg.generated` 等特殊注解做判断, 把旧的文件中没有这个注解成员添加到新生成的文件中. 对于 `import` 的策略是直接去重合并
 - 把mybatis直接打入包中, 配置文件中就不必再配置`mysql-connector-java`包的路径
 
+## 效果如下:
+
+![实体类](doc/domain.jpg)
+
+![dao](doc/dao.jpg)
+
 ## usage:
    
   1. 下载 [mybatis-generator-core-1.3.7.jar](target/mybatis-generator-core-1.3.7.jar)
